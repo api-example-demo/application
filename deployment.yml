@@ -30,7 +30,9 @@ spec:
         - name: web
           envFrom:
           - configMapRef:
-             name: rails-config
+              name: rails-config
+          - secretRef:
+              name: rails-secret
           image: GCP_REGISTRY/GKE_PROJECT/IMAGE:TAG
           ports:
             - containerPort: 3000
