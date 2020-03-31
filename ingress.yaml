@@ -5,8 +5,11 @@ metadata:
   annotations:
     kubernetes.io/ingress.global-static-ip-name: global-loadbalancer
 spec:
+  tls:
+    - secretName: tls-secret
   rules:
-    - http:
+    - host: application-api.hacksantiago.cl
+      http:
         paths:
           - backend:
               serviceName: service-api
