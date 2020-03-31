@@ -11,7 +11,7 @@ WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 
-RUN gem install bundler && bundle install
+RUN gem install bundler && bundle install --without=development,test
 
 COPY . /app
 
@@ -25,4 +25,4 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "3000"]
+CMD ["bundle", "exec", "puma", "-C", "config/puma.rb"]
