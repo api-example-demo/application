@@ -13,11 +13,9 @@ COPY Gemfile.lock /app/Gemfile.lock
 
 RUN gem install bundler && bundle install
 
-RUN node -v
-
 COPY . /app
 
-RUN rake assets:precompile && rake assets:clean
+RUN yarn install --check-files && rake assets:precompile && rake assets:clean
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
