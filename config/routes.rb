@@ -1,10 +1,4 @@
-require 'sidekiq/web'
-require 'sidekiq/cron/web'
-require 'sidekiq/history'
-
 Rails.application.routes.draw do
-  mount Sidekiq::Web => '/sidekiq'
-
   resources :people
 
   namespace :api do

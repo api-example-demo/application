@@ -56,21 +56,12 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-
-gem 'faraday', '~> 1.0'
-gem 'jenkins_api_client', '~> 1.5', '>= 1.5.3'
 gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
-
-
-gem 'sidekiq', '~> 6.0', '>= 6.0.4'
-gem 'sidekiq-cron', '~> 1.1'
-gem 'sidekiq-history', '~> 0.0.11'
 
 gem 'simple_form', '~> 5.0', '>= 5.0.2'
 gem 'awesome_print', '~> 1.8'
 gem 'feathericon-sass', '~> 1.0'
-
 
 gem 'active_model_serializers', '~> 0.10.10'
 gem 'fast_jsonapi', '~> 1.5'
@@ -81,25 +72,14 @@ gem 'oj', '~> 3.10', '>= 3.10.2'
 group :development do
   gem 'binding_of_caller', '~> 0.8.0'
   gem 'bullet', '~> 6.0'
-
-  gem 'letter_opener', '~> 1.6'
-  gem 'letter_opener_web', '~> 1.4'
 end
 
 gem 'omniauth', '~> 1.9'
 gem 'omniauth-google-oauth2', '~> 0.8.0'
 gem 'barnes', '~> 0.0.7'
 
-
-gem 'hiredis', '~> 0.6.3'
-gem 'redis', '~> 4.1', '>= 4.1.3'
-
-gem 'csv', '~> 3.1', '>= 3.1.2'
-
 gem 'auto_strip_attributes', '~> 2.5'
+gem 'rut_validation', '~> 1.1'
 
 gem 'will_paginate', '~> 3.2', '>= 3.2.1'
 gem 'will_paginate-bootstrap4', '~> 0.2.2'
-
-gem 'rut_validation'
-

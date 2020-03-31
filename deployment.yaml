@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: application-api
+  labels:
+    name: application-api
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: application-api
+  template:
+    metadata:
+      labels:
+        name: application-api
+    spec:
+      containers:
+        - name: web
+          image: gcr.io/$PROJECT/$APPLICATION:latest
+          ports:
+            - containerPort: 3000
+          livenessProbe:
+            httpGet:
+              path: /_health
+              port: 3000
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+          readinessProbe:
+            httpGet:
+              path: /_health
+              port: 3000
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
+
+
+  .GKE_KEY }}
+  GKE_PROJECT: ${{ secrets.GKE_PROJECT }}
+  GKE_EMAIL: ${{ secrets.GKE_EMAIL }}
