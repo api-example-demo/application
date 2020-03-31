@@ -4,4 +4,8 @@ class IndexController < ApplicationController
 
     redirect_to :people
   end
+
+  def ok
+    head :ok
+  end
 end
