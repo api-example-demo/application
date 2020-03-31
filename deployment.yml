@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: rails-config
+  namespace: default
+data:
+  LANG: en_US.UTF-8
+  RACK_ENV: production
+  RAILS_ENV: production
+  RAILS_LOG_TO_STDOUT: enabled
+  RAILS_SERVE_STATIC_FILES: enabled
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -17,6 +29,9 @@ spec:
       containers:
         - name: web
           image: GCP_REGISTRY/GKE_PROJECT/IMAGE:TAG
+          envFrom:
+            - configMapRef:
+                name: rails-config
           ports:
             - containerPort: 3000
           livenessProbe:
