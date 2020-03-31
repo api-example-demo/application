@@ -28,10 +28,10 @@ spec:
     spec:
       containers:
         - name: web
-          image: GCP_REGISTRY/GKE_PROJECT/IMAGE:TAG
           envFrom:
-            - configMapRef:
-                name: rails-config
+          - configMapRef:
+             name: rails-config
+          image: GCP_REGISTRY/GKE_PROJECT/IMAGE:TAG
           ports:
             - containerPort: 3000
           livenessProbe:
