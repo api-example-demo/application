@@ -11,11 +11,13 @@ WORKDIR /app
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
 
-RUN gem install bundler && bundle install --without=development,test
+RUN gem install bundler && \
+    bundle config --local build.sassc --disable-march-tune-native && \
+    bundle install --without=development,test
 
 COPY . /app
 
-RUN yarn install --check-files && rake assets:precompile && rake assets:clean
+RUN yarn install --check-files && bundle exec rails assets:precompile && bundle exec rails assets:clean
 
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
