@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: web
-          image: gcr.io/$PROJECT/$APPLICATION:latest
+          image: GCP_REGISTRY/GKE_PROJECT/IMAGE:TAG
           ports:
             - containerPort: 3000
           livenessProbe:
@@ -31,8 +31,3 @@ spec:
               port: 3000
             initialDelaySeconds: 10
             timeoutSeconds: 1
-
-
-  .GKE_KEY }}
-  GKE_PROJECT: ${{ secrets.GKE_PROJECT }}
-  GKE_EMAIL: ${{ secrets.GKE_EMAIL }}

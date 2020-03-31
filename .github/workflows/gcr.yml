@@ -1,4 +1,4 @@
-name: Build and publish GCR
+name: Build and Publish GCR
 
 on:
   push:
@@ -13,7 +13,7 @@ env:
   REGISTRY_HOSTNAME: us.gcr.io
 
 jobs:
-  setup-build-publish-deploy:
+  build-publish:
     name: Build / Publish
     runs-on: ubuntu-latest
     steps:
