@@ -68,6 +68,8 @@ gem 'fast_jsonapi', '~> 1.5'
 gem 'multi_json', '~> 1.14', '>= 1.14.1'
 gem 'oj', '~> 3.10', '>= 3.10.2'
 
+gem 'hiredis', '~> 0.6.3'
+gem 'redis', '~> 4.1', '>= 4.1.3'
 
 group :development do
   gem 'binding_of_caller', '~> 0.8.0'
