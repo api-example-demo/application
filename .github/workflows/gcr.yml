@@ -31,15 +31,11 @@ jobs:
         gcloud auth configure-docker
 
     - uses: whoan/docker-build-with-cache-action@v4
+      name: Build
       with:
         registry: $REGISTRY_HOSTNAME
         image_name: $GKE_PROJECT/$IMAGE
-
-    - name: Build
-      run: |        
-        docker build -t $REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:$GITHUB_SHA \
-          --build-arg GITHUB_SHA="$GITHUB_SHA" \
-          --build-arg GITHUB_REF="$GITHUB_REF" .
+        image_tag: $GITHUB_SHA,latest
 
     - name: Publish
       run: |
