@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>People</h1>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Rut</th>
+      <th>Name</th>
+      <th>Last name</th>
+      <th>Age</th>
+      <th>Course</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @people.each do |person| %>
+      <tr>
+        <td><%= person.rut %></td>
+        <td><%= person.name %></td>
+        <td><%= person.last_name %></td>
+        <td><%= person.age %></td>
+        <td><%= person.course %></td>
+        <td><%= link_to 'Edit', edit_person_path(person) %></td>
+        <td><%= link_to 'Destroy', person, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @people, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+
+<br>
+
+<%= link_to 'New Person', new_person_path, class: 'btn btn-primary' %>
+
+<br>
+<br>
+<br>
+
+<code>
+  curl --header "Content-Type: application/json" 'http://lvh.me:3000/api/v1/people/all?api_key=<%= @api_key %>'<br/>
+  curl --header "Content-Type: application/json" -d '{"rut":"RUT_VALIDO", "name":"NOMBRE", "last_name":"APELLIDO", "age":"EDAD", "course":"CURSO"}' 'http://lvh.me:3000/api/v1/people?api_key=<%= @api_key %>'<br/>
+</code>
