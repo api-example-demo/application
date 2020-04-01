@@ -2,6 +2,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :user_token
   helper_method :logged_in?
+  helper_method :gcp_token
 
   def current_user
     session[:user_id]
@@ -9,6 +10,10 @@ class ApplicationController < ActionController::Base
 
   def user_token
     session[:user_token]
+  end
+
+  def gcp_token
+    ENV['OPENID_API_KEY']
   end
 
   def logged_in?

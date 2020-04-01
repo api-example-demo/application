@@ -62,9 +62,17 @@ spec:
             - --rollout_strategy=managed
             - --cors_preset=basic
             - -z=healthz
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
           readinessProbe:
             httpGet:
               path: /healthz
               port: 8080
+            initialDelaySeconds: 10
+            timeoutSeconds: 1
           ports:
             - containerPort: 8080

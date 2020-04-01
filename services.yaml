@@ -4,7 +4,7 @@ metadata:
   name: service-api
 spec:
   ports:
-    - name: http
+    - name: service-http
       port: 3000
       protocol: TCP
       targetPort: 3000
@@ -18,10 +18,10 @@ metadata:
   name: endpoints-api
 spec:
   ports:
-    - name: http
+    - name: endpoints-http
       port: 8080
       protocol: TCP
       targetPort: 8080
   selector:
-    app: application-api
+    name: application-api
   type: NodePort
