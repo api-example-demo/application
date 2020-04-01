@@ -48,3 +48,23 @@ spec:
               port: 3000
             initialDelaySeconds: 10
             timeoutSeconds: 1
+        - name: endpoints
+          resources:
+            limits:
+              cpu: 100m
+            requests:
+              cpu: 30m
+          image: gcr.io/endpoints-release/endpoints-runtime:1.48.0
+          args:
+            - --http_port=8080
+            - --backend=127.0.0.1:3000
+            - --service=application-api.endpoints.api-example-demo-nhox.cloud.goog
+            - --rollout_strategy=managed
+            - --cors_preset=basic
+            - -z=healthz
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: 8081
+          ports:
+            - containerPort: 8080

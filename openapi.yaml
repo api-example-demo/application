@@ -1,0 +1,134 @@
+swagger: "2.0"
+info:
+  description: "OpenAPI application api example"
+  version: '1.1'
+  title: "OpenAPI application api example"
+host: "application-api.endpoints.api-example-demo-nhox.cloud.goog"
+x-google-endpoints:
+  - name: "application-api.endpoints.api-example-demo-nhox.cloud.goog"
+    allow_cors: "true"
+consumes:
+  - "application/json"
+produces:
+  - "application/json"
+schemes:
+  - "https"
+basePath: "/api/v1"
+paths:
+  "/people":
+    post:
+      operationId: "createPeople"
+      responses:
+        200:
+          description: "Array of Persons"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/person'
+      security:
+        - api_key: []
+    get:
+      operationId: "getPeoplePaginate"
+      responses:
+        200:
+          description: "Array of Persons"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/person'
+      security:
+        - api_key: []
+  "/people/all":
+    get:
+      operationId: "getAllPeople"
+      responses:
+        200:
+          description: "Array of Persons"
+          schema:
+            type: "array"
+            items:
+              $ref: '#/definitions/person'
+      security:
+        - api_key: []
+  "/people/{id}":
+    put:
+      operationId: "putUpdatePersonById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "A Person Object"
+          schema:
+            $ref: '#/definitions/person'
+      security:
+        - api_key: []
+    patch:
+      operationId: "patchUpdatePersonById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "A Person Object"
+          schema:
+            $ref: '#/definitions/person'
+      security:
+        - api_key: []
+    delete:
+      operationId: "deletePersonById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "A Person Object"
+          schema:
+            type: string
+      security:
+        - api_key: []
+    get:
+      operationId: "getPersonById"
+      parameters:
+        - name: "id"
+          in: "path"
+          required: true
+          type: "string"
+      responses:
+        200:
+          description: "A Person Object"
+          schema:
+            $ref: '#/definitions/person'
+      security:
+        - api_key: []
+definitions:
+  person:
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+      rut:
+        type: "string"
+      name:
+        type: "string"
+      last_name:
+        type: "string"
+      age:
+        type: "string"
+      course:
+        type: "string"
+      created_at:
+        type: "string"
+      updated_at:
+        type: "string"
+securityDefinitions:
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"

@@ -14,3 +14,7 @@ spec:
           - backend:
               serviceName: service-api
               servicePort: 3000
+        - path: /api/*
+          backend:
+            serviceName: endpoints-api
+            servicePort: 8080

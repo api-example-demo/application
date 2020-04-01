@@ -11,3 +11,17 @@ spec:
   selector:
     name: application-api
   type: NodePort
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: endpoints-api
+spec:
+  ports:
+    - name: http
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: application-api
+  type: NodePort
