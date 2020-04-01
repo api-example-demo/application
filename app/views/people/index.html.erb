@@ -38,7 +38,15 @@
 <br>
 <br>
 
+<h3>
+  API Token: <%= user_token %><br />
+  API V1: '<%= URI.join(url_for(only_path: false), api_v1_people_path) %>'
+</h3>
+
+<br>
+<br>
+
 <code>
-  curl --header "Content-Type: application/json" 'http://lvh.me:3000/api/v1/people/all?api_key=<%= @api_key %>'<br/>
-  curl --header "Content-Type: application/json" -d '{"rut":"RUT_VALIDO", "name":"NOMBRE", "last_name":"APELLIDO", "age":"EDAD", "course":"CURSO"}' 'http://lvh.me:3000/api/v1/people?api_key=<%= @api_key %>'<br/>
+  curl -H "Content-Type: application/json" -H "Authorization: <%= user_token %>" '<%= URI.join(url_for(only_path: false), all_api_v1_people_path) %>'<br/><br/>
+  curl -H "Content-Type: application/json" -H "Authorization: <%= user_token %>" -d '{"rut":"RUT_VALIDO", "name":"NOMBRE", "last_name":"APELLIDO", "age":"EDAD", "course":"CURSO"}' '<%= URI.join(url_for(only_path: false), api_v1_people_path) %>'<br/>
 </code>

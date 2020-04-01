@@ -1,6 +1,10 @@
 class SessionsController < ApplicationController
   def create
-    session[:user] = auth_hash['uid']
+    @user = User.where(email: auth_hash["info"]["email"]).first_or_initialize
+    @user.update(token: SecureRandom.uuid) unless @user.persisted?
+
+    session[:user_id] = @user.id
+    session[:user_token] = @user.token
 
     redirect_to :people
   end
