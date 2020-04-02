@@ -1,4 +1,4 @@
-name: Deploy to GKE
+name: Deploy to Endpoints
 
 on:
   release:
@@ -30,17 +30,6 @@ jobs:
           service_account_email: ${{ secrets.GKE_EMAIL }}
           service_account_key: ${{ secrets.GKE_KEY }}
 
-      - run: |
-          gcloud auth configure-docker
-
-      - name: Set up Kustomize
-        run: |
-          curl -o kustomize --location https://github.com/kubernetes-sigs/kustomize/releases/download/v3.1.0/kustomize_3.1.0_linux_amd64
-          chmod u+x ./kustomize
-
       - name: Deploy
         run: |
-          gcloud container clusters get-credentials $GKE_CLUSTER --region $GKE_LOCATION --project $GKE_PROJECT
-          ./kustomize edit set image GCP_REGISTRY/GKE_PROJECT/IMAGE:TAG=$REGISTRY_HOSTNAME/$GKE_PROJECT/$IMAGE:$GITHUB_SHA
-          ./kustomize build . | kubectl apply -f -
-          kubectl rollout status deployment/$DEPLOYMENT_NAME
+          gcloud endpoints services deploy openapi.yaml
