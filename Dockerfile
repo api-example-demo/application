@@ -1,4 +1,4 @@
-FROM ruby:2.6.5
+FROM ruby:2.7.1
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
 RUN curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
@@ -7,6 +7,8 @@ RUN apt-get update -qq && apt-get install -y nodejs postgresql-client yarn
 
 RUN mkdir /app
 WORKDIR /app
+
+ENV RUBYOPT "-W:no-deprecated -W:no-experimental"
 
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
